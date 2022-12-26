@@ -33,7 +33,6 @@ export function Router(){
     }
 
     else if(hash==="#/resultado"){
-      
         if(localStorage.getItem("valor")){
             $main.appendChild(Resultado());
         }else{

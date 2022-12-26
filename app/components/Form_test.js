@@ -1,16 +1,14 @@
+import { ModalBody } from "./Modal.js";
+
 export function FormTest(){
   const d=document,
       $formTest=d.createElement("form");
       $formTest.id="formulario";
       $formTest.classList.add("row","justify-content-center","align-items-center","mt-2");
 
-      $formTest.innerHTML=`
-      <div class="alert bg-light col-10 col-md-11 col-lg-6 shadow-sm" style=" border-left:solid 5px #0d6efd;" role="alert">
-        <strong>Nota:</strong> Para pasar la prueba debes de acertar al menos en 4 de las 5 preguntas.
-      </div>
-      
-      <div class="col-11 col-md-11 col-lg-7">
-      <div class="card mt-2 card-pregunta">
+      $formTest.innerHTML=`      
+      <div class="col-11 col-md-11 col-lg-7  pb-2">
+      <div class="card mt-4 card-pregunta">
         <h5 class="card-header bg-light">Pregunta 1 <small class="float-end">1 puntos</small></h5>
         <div class="card-body">
           <h5 class="card-title">¿Qué entiende por CSS?</h5>
@@ -59,7 +57,7 @@ export function FormTest(){
       </div>
     </div>
 
-    <div class="col-11 col-md-11 col-lg-7 ">
+    <div class="col-11 col-md-11 col-lg-7  pb-2">
       <div class="card mt-4 card-pregunta">
         <h5 class="card-header bg-light">Pregunta 3 <small class="float-end">1 puntos</small></h5>
         <div class="card-body">
@@ -85,7 +83,7 @@ export function FormTest(){
     </div>
 
     <div class="col-11 col-md-11 col-lg-7 pb-2">
-      <div class="card mt-2 card-pregunta">
+      <div class="card mt-4 card-pregunta">
         <h5 class="card-header bg-light">Pregunta 4 <small class="float-end">1 puntos</small></h5>
         <div class="card-body">
           <h5 class="card-title">¿Cuál es la sintaxis correcta en HTML para referirse a una hoja de estilo externa?</h5>
@@ -135,15 +133,15 @@ export function FormTest(){
     </div>
  
       <div id="resul_encuesta " class="text-center pt-3 pb-2">
-          <button type="submit" class="btn btn-primary btn-lg btn-block" disabled id="botonsiguiente">Responder</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" disabled id="botonresponder">Responder</button>
       </div>
       `;
 
       const $progress=d.querySelector(".progress-bar"),
       $allCards=$formTest.querySelectorAll(".card-pregunta"),
-      $btn=$formTest.botonsiguiente,
+      $btn=$formTest.botonresponder,
       $submit=$formTest;
-    //   console.log()
+
       let allPreguntas=$allCards.length,  //en este caso son 5
           cantxPregunta=100/allPreguntas,     // 20 
           total=0,
@@ -166,7 +164,6 @@ export function FormTest(){
       
       
         $formTest.addEventListener("change",e=>{
-            console.log(e.target.name)
           
           if(e.target.name==="respreuno"){
               if(respreuno===0){
@@ -216,34 +213,46 @@ export function FormTest(){
         e.preventDefault();
          
         let suma=0;
-         console.log($submit.respreuno.value);
          if($submit.respreuno.value==="3"){
           suma+=1;
          }
-         console.log($submit.respredos.value);
          if($submit.respredos.value==="4"){
           suma+=1;
          }
-         console.log($submit.respretres.value);
          if($submit.respretres.value==="2"){
           suma+=1;
          }
-         console.log($submit.resprecuatro.value);
          if($submit.resprecuatro.value==="4"){
           suma+=1;
          }
-         console.log($submit.resprecinco.value);
          if($submit.resprecinco.value==="1"){
           suma+=1;
          }
           
-         suma>3 ?localStorage.setItem("resultado",suma) : localStorage.setItem("resultado",suma);
+        //  Añadiendo variable resultado al localStorage
+         localStorage.setItem("resultado",suma);
+
+         //Redireccionando a la vista resultado
          location.href="#/resultado";
       
       });
 
-
       
+      // Agregando el modal a la vista de FormTest
+      $formTest.appendChild(ModalBody());  
+
+      // Abrir modal al momento de iniciar este archivo
+      function mostrarmodal(){
+        const modal = new bootstrap.Modal('#staticBackdrop', {focus:false});
+        modal.innerHTML=null;
+        modal.show();
+        
+      }
+
+      setTimeout(() =>mostrarmodal(), 100);
+      
+
+
       
 
       return $formTest;

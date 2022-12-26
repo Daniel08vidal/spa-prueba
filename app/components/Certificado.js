@@ -1,6 +1,6 @@
 export function Certificado(){
     const $certificado=document.createElement("section");
-      let fechaActual=new Date().toLocaleDateString(),
+    let fechaActual=new Date().toLocaleDateString(),
           nombre = localStorage.getItem("valor");
 
        $certificado.classList.add("d-flex","col-12","vh-100","mt-0","justify-content-center");
@@ -43,21 +43,16 @@ export function Certificado(){
         
       }
 
-      const  $btnPng = document.getElementById("png").id,
-      $btnPdf = document.getElementById("pdf").id,
-      $btnInicio = document.getElementById("inicio").id;
-      // console.log($btnPng)
+      const $btnInicio = document.getElementById("inicio").id;
+
       document.addEventListener("click",(e) =>{
-          // console.log(e.target.id)
-        if(e.target.id ===$btnPng){
-           console.log("click png");
+        if(e.target.matches("#png")){
            let dpng= document.createElement("a");
            dpng.download="Certificado.png";
            dpng.href=canvas.toDataURL();
            dpng.click();
         }
-        if(e.target.id ===$btnPdf){
-          console.log("click pdf");
+        if(e.target.matches("#pdf")){
           let dpdf = canvas.toDataURL("image/png");
           let doc = new jsPDF("l","mm");
           doc.addImage(dpdf, "PNG", 0, 0, 300, 214);
@@ -65,11 +60,9 @@ export function Certificado(){
        }
        if(e.target.id ===$btnInicio){
           localStorage.removeItem("valor");
-       }
-       
-           
-      });
-      
+       }     
+    });
+     
   }
 
 

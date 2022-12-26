@@ -1,14 +1,11 @@
 export function Header(){
   const $inicio=document.createElement("header");
-   $inicio.classList.add("box-shadow","sticky-top");
+   $inicio.classList.add("box-shadow","sticky-top","header");
    let nombre = localStorage.getItem("valor") ||"";
    let display="";
-   console.log(location.hash)
 
    if(!(location.hash==="#/principal"))display="d-none";
    
-
-
   $inicio.innerHTML=`
   <nav class="navbar navbar-expand-lg d-flex  justify-content-center justify-content-sm-center justify-content-md-center  navbar-light bg-light justify-content-lg-between">
     <a class="navbar-brand  mb-0 h1 ps-4 " href="${location.hash}">Prueba de Conocimiento</a>
@@ -20,6 +17,7 @@ export function Header(){
       <span class="navbar-text ps-4 pe-4">
         ${nombre}
       </span>
+    
   </nav>`;
 
   return $inicio;

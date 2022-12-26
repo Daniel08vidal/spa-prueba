@@ -102,7 +102,17 @@ export function Login(){
    }
  });
 
+
+
 }
+  // Eliminar el background del modal al regresar de pagina
+  const modalhide=document.querySelector(".modal-backdrop");
+  if(document.body.lastChild === modalhide){
+    document.body.removeChild(modalhide);
+    document.body.classList.remove("modal-open");
+    document.body.style.removeProperty("overflow","padding-right");
+    document.body.style.removeProperty("padding-right");
+  }
 
 
 

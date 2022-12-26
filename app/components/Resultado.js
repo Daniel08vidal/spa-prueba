@@ -2,23 +2,26 @@ export function Resultado(){
     const $resultado=document.createElement("section");
        $resultado.classList.add("row","justify-content-center","align-items-center","mt-2");
       let resulT=localStorage.getItem("resultado"),
+       tiempoT=localStorage.getItem("tiempo"),
       respuesta ={
         message:"",
         classText:"",
         small:"",
+        tiempo:"",
         boton:""
       };
-
 
       if(resulT>3 ){
         respuesta.message="¡Aprobaste!";
         respuesta.classText="success";
         respuesta.small="Excelente puedes descargar tu certificado de participación" ;
+        respuesta.tiempo=`Tiempo de realización ${tiempoT}`;
         respuesta.boton=`<a href="#/certificado" class="btn btn-secondary">Descargar certificado</a>`;
       }else{
         respuesta.message="¡Fallaste!";
         respuesta.classText="danger" ;
         respuesta.small="Para aprobar debes acertar 4 de las 5 preguntas";
+        respuesta.tiempo;
         respuesta.boton=`<a href="#/principal" class="btn btn-secondary">Intentar de nuevo</a>`;
       }
 
@@ -32,6 +35,7 @@ export function Resultado(){
         <div class="card-body">
           <h5 class="card-title text-${respuesta.classText} fw-bold" id="textMensaje">${ respuesta.message}</h5>
           <p  class="card-text"><strong id="numresultado">${resulT}</strong> respuestas acertadas de <strong>5</strong></p>
+          <p id="tiemporesultado">${respuesta.tiempo}</p>
           <small>${respuesta.small}</small><br><br>${respuesta.boton}
         </div>
       </div>
@@ -39,5 +43,6 @@ export function Resultado(){
   </div>
     `;
 
+  
     return $resultado;
 }

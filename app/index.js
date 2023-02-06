@@ -6,4 +6,5 @@ App();
 
 window.addEventListener("hashchange", ()=>{
 App();
+
 });

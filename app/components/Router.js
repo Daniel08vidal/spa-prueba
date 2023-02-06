@@ -1,7 +1,9 @@
 import { Certificado } from "./Certificado.js";
 import { Error } from "./Error.js";
+import { Error404 } from "./Error404.js";
 import { FormTest } from "./Form_test.js";
 import { Login } from "./Login.js";
+import { ModalBody } from "./Modal.js";
 import { Resultado } from "./Resultado.js";
 
 export function Router(){
@@ -27,9 +29,16 @@ export function Router(){
 
         if(localStorage.getItem("valor")){
             $main.appendChild(FormTest());
+            // Agregando el modal a la pagina principal
+            $main.appendChild(ModalBody()); 
+            const modal = new bootstrap.Modal('#staticBackdrop', {focus:false});
+            modal.innerHTML=null;
+            modal.show();
         }else{
             $main.appendChild(Error());
         }
+
+
     }
 
     else if(hash==="#/resultado"){
@@ -44,6 +53,11 @@ export function Router(){
     else if(hash==="#/certificado"){
         $root.removeChild($root.firstElementChild);  //remueve el nav de la vista
         $main.appendChild(Certificado());
+    }
+
+    else{
+        $root.removeChild($root.firstElementChild);
+        $main.appendChild(Error404());
     }
 
 }

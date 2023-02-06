@@ -1,6 +1,5 @@
 import { Header } from "./components/Header.js";
 import { Main } from "./components/Main.js";
-import { ModalBody } from "./components/Modal.js";
 import { Router } from "./components/Router.js";
 import { Tiempo } from "./components/Tiempo.js";
 
@@ -12,18 +11,16 @@ export function App(){
     $root.appendChild(Header());
     $root.appendChild(Main());
     
+
     const $header= document.querySelector(".header");
-     
     document.addEventListener("click", e =>{
         if(e.target.matches("#empezar")){
             
             $header.appendChild(Tiempo());
-            Tiempo().innerHTML=null;
         }
-     })
+     });
 
-     
-
+  
 
     Router();
     

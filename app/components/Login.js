@@ -61,7 +61,7 @@ export function Login(){
  formLogin.addEventListener(("submit"),e =>{
   e.preventDefault();
   localStorage.setItem("valor",e.target.name.value.toUpperCase());
-  console.log("ok")
+
   location.href="#/principal";
  });
 
@@ -105,6 +105,7 @@ export function Login(){
 
 
 }
+
   // Eliminar el background del modal al regresar de pagina
   const modalhide=document.querySelector(".modal-backdrop");
   if(document.body.lastChild === modalhide){

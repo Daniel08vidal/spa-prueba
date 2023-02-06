@@ -1,5 +1,3 @@
-import { ModalBody } from "./Modal.js";
-
 export function FormTest(){
   const d=document,
       $formTest=d.createElement("form");
@@ -237,22 +235,7 @@ export function FormTest(){
       
       });
 
-      
-      // Agregando el modal a la vista de FormTest
-      $formTest.appendChild(ModalBody());  
-
-      // Abrir modal al momento de iniciar este archivo
-      function mostrarmodal(){
-        const modal = new bootstrap.Modal('#staticBackdrop', {focus:false});
-        modal.innerHTML=null;
-        modal.show();
-        
-      }
-
-      setTimeout(() =>mostrarmodal(), 100);
-      
-
-
+    
       
 
       return $formTest;

@@ -9,6 +9,7 @@ export function Tiempo(){
      minutesEf=0,
      secondsEf=0,
 
+
      countdownTempo=setInterval(()=>{
         let now =new Date().getTime(),
         
@@ -18,27 +19,34 @@ export function Tiempo(){
         minutes=("0"+Math.floor((limitTime %(1000*60*60))/(1000*60))).slice(-2),
         seconds=("0"+Math.floor((limitTime %(1000*60))/(1000))).slice(-2);
 
+        // Tiempo recorrido de la prueba
         tiempoRecorrido++;
         let multiplodemil=tiempoRecorrido*1000; // se multiplica por mil para pasarlo a milisegundos para la conversion
-
          minutesEf=("0"+Math.floor((multiplodemil %(1000*60*60))/(1000*60))).slice(-2);
         secondsEf=("0"+Math.floor((multiplodemil %(1000*60))/(1000))).slice(-2);
+
     
         $temporizador.innerHTML=`<strong>Tiempo:</strong> <label>00:${minutes}:${seconds}</label>`;
 
+   
 
           if(limitTime<0){
             clearInterval(countdownTempo);
-            $temporizador.innerHTML="";
+            
             const modal = new bootstrap.Modal('#modalfinaltiempo', {});
             modal.innerHTML=null;
             modal.show();
-            
+
+            $temporizador.style.display="none";
+            $temporizador.innerHTML=null;
           }
-  
+
+         
+
+
      },1000); 
 
-
+     
 
        document.addEventListener("click",e =>{
         if(e.target.matches("#botonresponder")){
